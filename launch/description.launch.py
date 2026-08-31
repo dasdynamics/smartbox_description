@@ -3,11 +3,17 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch_ros.actions import Node
-from launch.conditions import IfCondition, LaunchConfigurationEquals
+from launch.conditions import IfCondition
 from launch.substitutions import FindExecutable, Command, LaunchConfiguration
 
 
 def generate_launch_description():
+
+    # Параметры окружения
+    description_pkg_name = 'smartbox_description'
+    description_file_name = 'main.urdf.xacro'
+    rviz2_config_file_name = 'rviz2_description_config.rviz'
+
 
     # Аргументы запуска
     rviz2_launch_argument_declare = DeclareLaunchArgument(
@@ -15,12 +21,6 @@ def generate_launch_description():
         default_value = 'true',
         description = 'Start Rviz2 when starting descriptions.'
     )
-
-
-    # Параметры окружения
-    description_pkg_name = 'smartbox_description'
-    description_file_name = 'main.urdf.xacro'
-    rviz2_config_file_name = 'rviz2_description_config.rviz'
 
 
     # Пути к пакетам

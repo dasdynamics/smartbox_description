@@ -4,7 +4,7 @@
   <name>smartbox_description</name>
   <version>0.0.0</version>
   <description>Robot description package.</description>
-  <maintainer email="das-dev-dt@mail.ru">dmitry-savin-dev</maintainer>
+  <maintainer email="das-dev-md@mail.ru">dmitry-savin-dev</maintainer>
   <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
