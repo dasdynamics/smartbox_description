@@ -30,7 +30,7 @@ def generate_launch_description():
     # Пути к конфигурационным файлам
     rviz2_config_file_path = os.path.join(
         description_pkg_path,
-        'config',
+        'configs',
         rviz2_config_file_name
     )
 
