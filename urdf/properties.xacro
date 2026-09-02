@@ -15,4 +15,14 @@
     <xacro:property name="caster_mass" value="0.1"/>
     <xacro:property name="caster_radius" value="0.07"/>
 
+    <xacro:property name="lidar_box_mass" value="1.0"/>
+    <xacro:property name="lidar_box_length" value="0.25"/>
+    <xacro:property name="lidar_box_width" value="0.25"/>
+    <xacro:property name="lidar_box_height" value="0.1"/>
+    
+    <xacro:property name="lidar_mass" value="1.0"/>
+    <xacro:property name="lidar_height" value="0.01"/>
+    <xacro:property name="lidar_radius" value="0.07"/>
+
+
 </robot>

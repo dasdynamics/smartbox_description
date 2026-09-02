@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    
+    <link name="lidar_box_link">
+        <visual>
+            <geometry>
+                <box size="${lidar_box_length} ${lidar_box_width} ${lidar_box_height}"/>
+            </geometry>
+            <origin xyz="0 0 ${lidar_box_height / 2.0}" rpy="0 0 0"/>
+        </visual>
+        <collision>
+             <geometry>
+                <box size="${lidar_box_length} ${lidar_box_width} ${lidar_box_height}"/>
+            </geometry>
+            <origin xyz="0 0 ${lidar_box_height / 2.0}" rpy="0 0 0"/>
+        </collision>
+        <xacro:inertia_of_box mass="${lidar_box_mass}" length="${lidar_box_length}" width="${lidar_box_width}" height="${lidar_box_height}"/>
+    </link>
+    
+    <link name="lidar_link">
+        <visual>
+            <geometry>
+                <cylinder radius="${lidar_radius}" length="${lidar_height}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="${lidar_radius}" length="${lidar_height}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </collision>
+        <xacro:inertia_of_sphere mass="${lidar_mass}" radius="${lidar_radius}"/>
+    </link>
+
+
+    <joint name="lidar_box_base_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="lidar_box_link"/>
+        <origin xyz="0 0 ${base_height}"/>
+    </joint>
+
+    <joint name="lidar_lidar_box_joint" type="fixed">
+        <parent link="lidar_box_link"/>
+        <child link="lidar_link"/>
+        <origin xyz="0 0 0"/>
+    </joint>
+
+
+
+</robot>

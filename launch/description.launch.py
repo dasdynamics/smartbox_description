@@ -11,7 +11,7 @@ def generate_launch_description():
 
     # Параметры окружения
     description_pkg_name = 'smartbox_description'
-    description_file_name = 'main.urdf.xacro'
+    description_file_name = 'bringup.urdf.xacro'
     rviz2_config_file_name = 'rviz2_description_config.rviz'
 
 
