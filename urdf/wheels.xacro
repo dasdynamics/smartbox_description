@@ -13,7 +13,8 @@
             </visual>
             <collision>
                 <geometry>
-                    <cylinder radius="${wheel_radius}" length="${wheel_height}"/>
+                    <!-- <cylinder radius="${wheel_radius}" length="${wheel_height}"/> -->
+                    <sphere radius="${wheel_radius}"/>
                 </geometry>
                 <origin xyz="0 0 0" rpy="${pi / 2.0} 0 0"/>
             </collision>
@@ -21,21 +22,21 @@
         </link>
     </xacro:macro>
 
-    <xacro:macro name="caster_link" params="prefix">
-        <link name="${prefix}_caster_link">
+    <xacro:macro name="support_wheel_link" params="prefix">
+        <link name="${prefix}_support_wheel_link">
             <visual>
                 <geometry>
-                    <sphere radius="${caster_radius}"/>
+                    <sphere radius="${support_wheel_radius}"/>
                 </geometry>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
             </visual>
             <collision>
                 <geometry>
-                    <sphere radius="${caster_radius}"/>
+                    <sphere radius="${support_wheel_radius}"/>
                 </geometry>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
             </collision>
-            <xacro:inertia_of_sphere mass="${caster_mass}" radius="${caster_radius}"/>
+            <xacro:inertia_of_sphere mass="${support_wheel_mass}" radius="${support_wheel_radius}"/>
         </link>
     </xacro:macro>
    
@@ -48,8 +49,8 @@
         </joint>
     </xacro:macro>
  
-    <xacro:macro name="base_caster_joint" params="position child_name offset" >
-        <joint name="$base_${position}_caster_joint" type="fixed">
+    <xacro:macro name="base_support_wheel_joint" params="position child_name offset" >
+        <joint name="$base_${position}_support_wheel_joint" type="fixed">
             <parent link="base_link"/>
             <child link="${child_name}"/>
             <origin xyz="${offset} 0 0"/>
@@ -61,13 +62,13 @@
     <xacro:wheel_link prefix="left"/>
     <xacro:wheel_link prefix="right"/>
 
-    <xacro:caster_link prefix="front"/>
-    <xacro:caster_link prefix="rear"/>
+    <xacro:support_wheel_link prefix="front"/>
+    <xacro:support_wheel_link prefix="rear"/>
 
     <xacro:base_wheel_joint position="left" child_name="left_wheel_link" offset="${wheel_separation / 2}"/>
     <xacro:base_wheel_joint position="right" child_name="right_wheel_link" offset="${-wheel_separation / 2}"/>
 
-    <xacro:base_caster_joint position="front" child_name="front_caster_link" offset="${base_length / 2}"/>
-    <xacro:base_caster_joint position="rear" child_name="rear_caster_link" offset="${-base_length / 2}"/>
+    <xacro:base_support_wheel_joint position="front" child_name="front_support_wheel_link" offset="${support_wheel_separation / 2}"/>
+    <xacro:base_support_wheel_joint position="rear" child_name="rear_support_wheel_link" offset="${-support_wheel_separation / 2}"/>
 
 </robot>

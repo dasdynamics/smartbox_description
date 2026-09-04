@@ -52,6 +52,16 @@
             </lidar>
         </sensor>
     </gazebo>
+
+    <gazebo reference="front_caster_link">
+        <mu1>0.00000001</mu1>
+        <mu2>0.00000001</mu2>
+    </gazebo>
+
+    <gazebo reference="rear_caster_link">
+        <mu1>0.00000001</mu1>
+        <mu2>0.00000001</mu2>
+    </gazebo>
     
 
 </robot>
