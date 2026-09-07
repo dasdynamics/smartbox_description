@@ -88,6 +88,14 @@ ros2 launch smartbox_description description.launch.py
 
 ***
 
+## Новости разработки
+
+Последние новости о разработке проекта публикуются в группе ВКонтакте:
+
+- **ВКонтакте:** [ДАС Динамика](https://vk.ru/dasdynamics)
+
+***
+
 ## Контакты
 
 Если у вас остались вопросы, вы можете связаться по следующим контактам:
@@ -96,4 +104,3 @@ ros2 launch smartbox_description description.launch.py
 - **Telegram:** [@das_dev_tg](https://t.me/das_dev_tg)
 
 ***
-

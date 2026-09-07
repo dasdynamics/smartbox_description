@@ -3,22 +3,22 @@
 
     
     <!-- Объявление макросов -->
-    <xacro:macro name="wheel_link" params="prefix">
-        <link name="${prefix}_wheel_link">
+    <xacro:macro name="drive_wheel_link" params="prefix">
+        <link name="${prefix}_drive_wheel_link">
             <visual>
                 <geometry>
-                    <cylinder radius="${wheel_radius}" length="${wheel_height}"/>
+                    <cylinder radius="${drive_wheel_radius}" length="${drive_wheel_height}"/>
                 </geometry>
                 <origin xyz="0 0 0" rpy="${pi / 2.0} 0 0"/>
             </visual>
             <collision>
                 <geometry>
                     <!-- <cylinder radius="${wheel_radius}" length="${wheel_height}"/> -->
-                    <sphere radius="${wheel_radius}"/>
+                    <sphere radius="${drive_wheel_radius}"/>
                 </geometry>
                 <origin xyz="0 0 0" rpy="${pi / 2.0} 0 0"/>
             </collision>
-            <xacro:inertia_of_cylinder mass="${wheel_mass}" height="${wheel_height}" radius="${wheel_radius}"/>
+            <xacro:inertia_of_cylinder mass="${drive_wheel_mass}" height="${drive_wheel_height}" radius="${drive_wheel_radius}"/>
         </link>
     </xacro:macro>
 
@@ -40,18 +40,18 @@
         </link>
     </xacro:macro>
    
-    <xacro:macro name="base_wheel_joint" params="position child_name offset" >
-        <joint name="base_${position}_wheel_joint" type="continuous">
-            <parent link="base_link"/>
+    <xacro:macro name="chassis_box_to_drive_wheel_joint" params="position child_name offset" >
+        <joint name="chassis_box_to_${position}_drive_wheel_joint" type="continuous">
+            <parent link="chassis_box_link"/>
             <child link="${child_name}"/>
             <origin xyz="0 ${offset} 0"/>
             <axis xyz="0 1 0"/>
         </joint>
     </xacro:macro>
  
-    <xacro:macro name="base_support_wheel_joint" params="position child_name offset" >
-        <joint name="$base_${position}_support_wheel_joint" type="fixed">
-            <parent link="base_link"/>
+    <xacro:macro name="chassis_box_to_support_wheel_joint" params="position child_name offset" >
+        <joint name="$chassis_box_to_${position}_support_wheel_joint" type="fixed">
+            <parent link="chassis_box_link"/>
             <child link="${child_name}"/>
             <origin xyz="${offset} 0 0"/>
         </joint>
@@ -59,16 +59,16 @@
 
     
     <!-- Вызов макросов -->
-    <xacro:wheel_link prefix="left"/>
-    <xacro:wheel_link prefix="right"/>
+    <xacro:drive_wheel_link prefix="left"/>
+    <xacro:drive_wheel_link prefix="right"/>
 
     <xacro:support_wheel_link prefix="front"/>
     <xacro:support_wheel_link prefix="rear"/>
 
-    <xacro:base_wheel_joint position="left" child_name="left_wheel_link" offset="${wheel_separation / 2}"/>
-    <xacro:base_wheel_joint position="right" child_name="right_wheel_link" offset="${-wheel_separation / 2}"/>
+    <xacro:chassis_box_to_drive_wheel_joint position="left" child_name="left_drive_wheel_link" offset="${drive_wheel_separation / 2}"/>
+    <xacro:chassis_box_to_drive_wheel_joint position="right" child_name="right_drive_wheel_link" offset="${-drive_wheel_separation / 2}"/>
 
-    <xacro:base_support_wheel_joint position="front" child_name="front_support_wheel_link" offset="${support_wheel_separation / 2}"/>
-    <xacro:base_support_wheel_joint position="rear" child_name="rear_support_wheel_link" offset="${-support_wheel_separation / 2}"/>
+    <xacro:chassis_box_to_support_wheel_joint position="front" child_name="front_support_wheel_link" offset="${support_wheel_separation / 2}"/>
+    <xacro:chassis_box_to_support_wheel_joint position="rear" child_name="rear_support_wheel_link" offset="${-support_wheel_separation / 2}"/>
 
 </robot>
