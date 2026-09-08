@@ -36,7 +36,7 @@
 
 
     <joint name="lidar_box_base_joint" type="fixed">
-        <parent link="chassis_box_link"/>
+        <parent link="base_link"/>
         <child link="lidar_box_link"/>
         <origin xyz="0 0 ${chassis_box_height}"/>
     </joint>

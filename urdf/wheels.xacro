@@ -42,7 +42,7 @@
    
     <xacro:macro name="chassis_box_to_drive_wheel_joint" params="position child_name offset" >
         <joint name="chassis_box_to_${position}_drive_wheel_joint" type="continuous">
-            <parent link="chassis_box_link"/>
+            <parent link="base_link"/>
             <child link="${child_name}"/>
             <origin xyz="0 ${offset} 0"/>
             <axis xyz="0 1 0"/>
@@ -51,7 +51,7 @@
  
     <xacro:macro name="chassis_box_to_support_wheel_joint" params="position child_name offset" >
         <joint name="$chassis_box_to_${position}_support_wheel_joint" type="fixed">
-            <parent link="chassis_box_link"/>
+            <parent link="base_link"/>
             <child link="${child_name}"/>
             <origin xyz="${offset} 0 0"/>
         </joint>

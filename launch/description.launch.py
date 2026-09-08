@@ -9,33 +9,28 @@ from launch.substitutions import FindExecutable, Command, LaunchConfiguration
 
 def generate_launch_description():
 
-    # Параметры окружения
+    # --- Параметры для изменения ---
     description_pkg_name = 'smartbox_description'
     description_file_name = 'bringup.urdf.xacro'
     rviz2_config_file_name = 'rviz2_description_config.rviz'
+    # --- --- --- --- --- --- --- ---
 
 
-    # Аргументы запуска
+    description_pkg_path = get_package_share_directory(description_pkg_name)
+
+
     rviz2_launch_argument_declare = DeclareLaunchArgument(
         'rviz2_run',
         default_value = 'true',
         description = 'Start Rviz2 when starting descriptions.'
     )
 
-
-    # Пути к пакетам
-    description_pkg_path = get_package_share_directory(description_pkg_name)
-
-
-    # Пути к конфигурационным файлам
     rviz2_config_file_path = os.path.join(
         description_pkg_path,
         'configs',
         rviz2_config_file_name
     )
 
-
-    # Парсинг описания робота
     robot_description = Command([
         FindExecutable(name='xacro'),
         ' ',
@@ -43,7 +38,6 @@ def generate_launch_description():
     ])
 
 
-    # Ноды
     robot_state_publisher_node = Node(
         package = 'robot_state_publisher',
         executable = 'robot_state_publisher', 
@@ -72,7 +66,6 @@ def generate_launch_description():
     )
 
 
-    # Запуск
     ld = LaunchDescription()
 
     ld.add_action(rviz2_launch_argument_declare)
