@@ -1,4 +1,4 @@
-## Описание репозитория: `smartbox_description`
+## smartbox_description
 
 Репозиторий содержит ROS 2-пакет с описанием робота **SmartBox**.
 
